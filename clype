@@ -1,0 +1,8 @@
+if [ "$#" -ne 2 ]; then
+    echo "Usage: clype <program> <outputfile>"
+    exit 1
+fi
+
+command=$1
+file=$2
+source ${command} 2>&1 | tee ${file} && git --no-pager diff --color-words ${file}
