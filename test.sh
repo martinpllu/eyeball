@@ -1,1 +1,4 @@
-clype "echo Jupiter\Saturn" test.out
+echo One Banana
+echo Two Banana
+echo Three Banana
+echo Four
