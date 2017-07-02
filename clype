@@ -5,4 +5,4 @@ fi
 
 command=$1
 file=$2
-source ${command} 2>&1 | tee ${file} && git --no-pager diff --color-words ${file}
+${command} 2>&1 | tee ${file} && git --no-pager diff --color-words ${file}
