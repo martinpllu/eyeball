@@ -1,0 +1,29 @@
+if [ "$#" -ne 2 ]; then
+    echo "Usage: eyeball <program> <outputfile>"
+    exit 1
+fi
+
+COMMAND=$1
+FILE=$2
+EXPECTED_FILE=$FILE
+ACTUAL_FILE=$FILE.eyeball
+
+if [ ! -f $EXPECTED_FILE ]; then
+    eval $COMMAND 2>&1 | tee $EXPECTED_FILE
+    echo ">>> eyeball: Created '$EXPECTED_FILE'"
+    exit 0
+fi
+
+eval $COMMAND 2>&1 | tee $ACTUAL_FILE && git --no-pager diff --color-words --no-index $ACTUAL_FILE $EXPECTED_FILE
+# eval $COMMAND 2>&1 | tee $ACTUAL_FILE && colordiff $ACTUAL_FILE $EXPECTED_FILE
+
+
+DIFF_EXIT_CODE=$?
+
+if [ $DIFF_EXIT_CODE == 0 ] ; then
+  echo ">>> eyeball: no change"
+  rm $ACTUAL_FILE
+else
+  echo ">>> eyeball: DIFFERENCES DETECTED. Run 'eyeball-update $2' to update expected output."
+  exit 1
+fi

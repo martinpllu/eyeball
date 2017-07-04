@@ -1,0 +1,17 @@
+if [ "$#" -ne 1 ]; then
+    echo "Usage: eyeball-update <outputfile>"
+    exit 1
+fi
+
+FILE=$1
+EXPECTED_FILE=$FILE
+ACTUAL_FILE=$FILE.eyeball
+
+if [ ! -f $ACTUAL_FILE ]; then
+    echo "$ACTUAL_FILE does not exist. Nothing to do."
+    exit 1
+fi
+
+rm $EXPECTED_FILE
+mv $ACTUAL_FILE $EXPECTED_FILE
+echo "Updated $EXPECTED_FILE and deleted $ACTUAL_FILE"
