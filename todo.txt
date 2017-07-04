@@ -1,2 +1,2 @@
 - Use git diff if installed
-- Don't show diff if the script fails?
+- Configurable diff command

@@ -8,7 +8,8 @@ FILE=$2
 EXPECTED_FILE=$FILE
 ACTUAL_FILE=$FILE.eyeball
 
-DIFF_COMMAND="git --no-pager diff --color-words --no-index"
+DIFF="git --no-pager diff --color-words --no-index"
+DIFF_COMMAND_LINE="$DIFF $EXPECTED_FILE $ACTUAL_FILE"
 # colordiff $ACTUAL_FILE $EXPECTED_FILE
 
 if [ ! -f $EXPECTED_FILE ]; then
@@ -22,21 +23,26 @@ eval $COMMAND 2>&1 | tee $ACTUAL_FILE
 ACTUAL_FILE_LINES=$(cat $ACTUAL_FILE | wc -l | xargs)
 EXPECTED_FILE_LINES=$(cat $EXPECTED_FILE | wc -l | xargs)
 
+# Don't show diff if actual output line count is less than a tenth of expected output line count
 let TOO_FEW_OUTPUT_LINES=`bc <<< "scale=100; ($ACTUAL_FILE_LINES / $EXPECTED_FILE_LINES) < 0.1"`
 if [ $TOO_FEW_OUTPUT_LINES == 1 ] ; then
   echo ">>> eyeball: Output much shorter than expected (expected $EXPECTED_FILE_LINES lines, saw $ACTUAL_FILE_LINES lines). Not showing diff."
-  echo ">>> eyeball: To see the diff run '$DIFF_COMMAND $EXPECTED_FILE $ACTUAL_FILE'"
+  echo ">>> eyeball: To see the diff run '$DIFF_COMMAND_LINE'"
   echo ">>> eyeball: Run 'eyeball-update $2' to update expected output."
   exit 1
 fi
 
-$DIFF_COMMAND $EXPECTED_FILE $ACTUAL_FILE
+echo ">>> eyeball: Running '$DIFF_COMMAND_LINE'"
+$DIFF_COMMAND_LINE
 DIFF_EXIT_CODE=$?
 
 if [ $DIFF_EXIT_CODE == 0 ] ; then
-  echo ">>> eyeball: no change"
+  echo ">>> eyeball: Output matches $EXPECTED_FILE"
+  echo ">>> eyeball: PASS"
   rm $ACTUAL_FILE
 else
-  echo ">>> eyeball: DIFFERENCES DETECTED. Run 'eyeball-update $2' to update expected output."
+  echo ">>> eyeball: Output does not match $EXPECTED_FILE"
+  echo ">>> eyeball: If you want to accept these changes, run 'eyeball-update $FILE'"
+  echo ">>> eyeball: FAIL"
   exit 1
 fi
