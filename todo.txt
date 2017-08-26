@@ -1,2 +1,4 @@
 - Use git diff if installed
 - Configurable diff command
+- Combine into a single file with --update arg
+- Include version number in file

@@ -1,3 +1,4 @@
 # Quick start
 
-cp vigil /usr/local/bin
+
+To install: cp vigil /usr/local/bin

@@ -8,5 +8,8 @@ echo "Expecting extra line..."
 ./eyeball "echo One\nTwo\Three\Four" count
 echo "Expecting changed letter..."
 ./eyeball "echo One\nToo\Three" count
-rm count.expected
-rm count.actual
+echo "Running eyeball-update"
+./eyeball-update count
+echo "Expecting pass"
+./eyeball "echo One\nToo\Three" count
+rm count
