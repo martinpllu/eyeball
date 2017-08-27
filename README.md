@@ -15,7 +15,8 @@ eyeball "python embellish.py --frobincate" embellish.out
 # Run the test again (usually afer a code change is made) using the same command as above.
 # If the new output exactly matches the baseline output, eyeball reports a PASS.
 # Otherwise, eyeball reports a FAIL and displays a diff between the new and baseline output, 
-# and the new output is stored in embellish.out.eyeball
+# and the new output is stored in embellish.out.eyeball.
+
 # If the difference in output is expected, you can update the baseline:
 
 eyeball --update embellish.out
@@ -25,13 +26,13 @@ eyeball --update embellish.out
 
 # Installation
 
-To install, simply copy the `eyeball` script somehere on your path (e.g. `/usr/local/bin`).
+To install, simply copy the `eyeball` script somehere on your PATH, e.g. `/usr/local/bin`.
 
 # Diff command
 
 - If `git` is installed, `eyeball` uses `git --no-pager diff --color-words --no-index` to generate a lovely colourised word-by-word diff report.
 - If `git` is not installed, `eyeball` uses plain old `diff`.
-- The diff command can be customised by setting the EYEBALL_DIFF environment variable, e.g. `export EYEBALL_DIFF=colordiff`
+- The diff command can be customised by setting the `EYEBALL_DIFF` environment variable, e.g. `export EYEBALL_DIFF=colordiff`
 
 # Notes and tips
 
