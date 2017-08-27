@@ -3,56 +3,48 @@ OnenTwoThree
 >>> eyeball: Created 'count'
 Expecting no diffs...
 One\nTwo\Three
->>> eyeball: Running 'git --no-pager diff --color-words --no-index count count.eyeball'
-[1mdiff --git a/count b/count.eyeball[m
-[1mindex 4de0085..d2ebf46 100644[m
-[1m--- a/count[m
-[1m+++ b/count.eyeball[m
-[36m@@ -1 +1 @@[m
-[31mOnenTwoThree[m[32mOne\nTwo\Three[m
+>>> eyeball: Running 'diff count count.eyeball'
+1c1
+< OnenTwoThree
+---
+> One\nTwo\Three
 >>> eyeball: Output does not match count
->>> eyeball: If you want to accept these changes, run 'eyeball-update count'
+>>> eyeball: If you want to accept these changes, run 'eyeball --update count'
 >>> eyeball: FAIL
 Expecting missing line...
 One\nTwo
->>> eyeball: Running 'git --no-pager diff --color-words --no-index count count.eyeball'
-[1mdiff --git a/count b/count.eyeball[m
-[1mindex 4de0085..5251de6 100644[m
-[1m--- a/count[m
-[1m+++ b/count.eyeball[m
-[36m@@ -1 +1 @@[m
-[31mOnenTwoThree[m[32mOne\nTwo[m
+>>> eyeball: Running 'diff count count.eyeball'
+1c1
+< OnenTwoThree
+---
+> One\nTwo
 >>> eyeball: Output does not match count
->>> eyeball: If you want to accept these changes, run 'eyeball-update count'
+>>> eyeball: If you want to accept these changes, run 'eyeball --update count'
 >>> eyeball: FAIL
 Expecting extra line...
 One\nTwo\Three\Four
->>> eyeball: Running 'git --no-pager diff --color-words --no-index count count.eyeball'
-[1mdiff --git a/count b/count.eyeball[m
-[1mindex 4de0085..5f4ada7 100644[m
-[1m--- a/count[m
-[1m+++ b/count.eyeball[m
-[36m@@ -1 +1 @@[m
-[31mOnenTwoThree[m[32mOne\nTwo\Three\Four[m
+>>> eyeball: Running 'diff count count.eyeball'
+1c1
+< OnenTwoThree
+---
+> One\nTwo\Three\Four
 >>> eyeball: Output does not match count
->>> eyeball: If you want to accept these changes, run 'eyeball-update count'
+>>> eyeball: If you want to accept these changes, run 'eyeball --update count'
 >>> eyeball: FAIL
 Expecting changed letter...
 One\nToo\Three
->>> eyeball: Running 'git --no-pager diff --color-words --no-index count count.eyeball'
-[1mdiff --git a/count b/count.eyeball[m
-[1mindex 4de0085..af217cc 100644[m
-[1m--- a/count[m
-[1m+++ b/count.eyeball[m
-[36m@@ -1 +1 @@[m
-[31mOnenTwoThree[m[32mOne\nToo\Three[m
+>>> eyeball: Running 'diff count count.eyeball'
+1c1
+< OnenTwoThree
+---
+> One\nToo\Three
 >>> eyeball: Output does not match count
->>> eyeball: If you want to accept these changes, run 'eyeball-update count'
+>>> eyeball: If you want to accept these changes, run 'eyeball --update count'
 >>> eyeball: FAIL
 Running eyeball-update
 Updated count and deleted count.eyeball
 Expecting pass
 One\nToo\Three
->>> eyeball: Running 'git --no-pager diff --color-words --no-index count count.eyeball'
+>>> eyeball: Running 'diff count count.eyeball'
 >>> eyeball: Output matches count
 >>> eyeball: PASS

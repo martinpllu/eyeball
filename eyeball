@@ -1,4 +1,27 @@
 #!/bin/bash
+# eyeball v0.1
+
+if [ "--update" == "$1" ]; then
+  # Update the expected output by replacing <outputfile> with <outputfile>.eyeball
+  if [ "$#" -ne 2 ]; then
+    echo "Usage: eyeball --update <outputfile>"
+    exit 1
+  fi
+
+  FILE=$2
+  EXPECTED_FILE=$FILE
+  ACTUAL_FILE=$FILE.eyeball
+
+  if [ ! -f $ACTUAL_FILE ]; then
+    echo "$ACTUAL_FILE does not exist. Nothing to do."
+    exit 1
+  fi
+
+  rm $EXPECTED_FILE
+  mv $ACTUAL_FILE $EXPECTED_FILE
+  echo "Updated $EXPECTED_FILE and deleted $ACTUAL_FILE"
+  exit 0
+fi
 
 if [ "$#" -ne 2 ]; then
     echo "Usage: eyeball <program> <outputfile>"
@@ -10,10 +33,15 @@ FILE=$2
 EXPECTED_FILE=$FILE
 ACTUAL_FILE=$FILE.eyeball
 
-DIFF="git --no-pager diff --color-words --no-index"
-#DIFF="diff"
+if [[ -n "$EYEBALL_DIFF" ]]; then
+    DIFF=$EYEBALL_DIFF
+elif hash git 2>/dev/null; then
+    DIFF="git --no-pager diff --color-words --no-index"
+else
+    DIFF="diff"
+fi
+
 DIFF_COMMAND_LINE="$DIFF $EXPECTED_FILE $ACTUAL_FILE"
-# colordiff $ACTUAL_FILE $EXPECTED_FILE
 
 # Run the command and output to the 'expected' file if it doesn't already exist, then exit
 if [ ! -f $EXPECTED_FILE ]; then
@@ -34,7 +62,7 @@ if [ $EXPECTED_FILE_LINES -ne 0 ] ; then
   if [ $TOO_FEW_OUTPUT_LINES == 1 ] ; then
     echo ">>> eyeball: Output much shorter than expected (expected $EXPECTED_FILE_LINES lines, saw $ACTUAL_FILE_LINES lines). Not showing diff."
     echo ">>> eyeball: To see the diff run '$DIFF_COMMAND_LINE'"
-    echo ">>> eyeball: Run 'eyeball-update $2' to update expected output."
+    echo ">>> eyeball: Run 'eyeball --update $2' to update expected output."
     echo ">>> eyeball: FAIL"
     exit 1
   fi
@@ -50,7 +78,7 @@ if [ $DIFF_EXIT_CODE == 0 ] ; then
   rm $ACTUAL_FILE
 else
   echo ">>> eyeball: Output does not match $EXPECTED_FILE"
-  echo ">>> eyeball: If you want to accept these changes, run 'eyeball-update $FILE'"
+  echo ">>> eyeball: If you want to accept these changes, run 'eyeball --update $FILE'"
   echo ">>> eyeball: FAIL"
   exit 1
 fi

@@ -1,3 +1,4 @@
+export EYEBALL_DIFF=diff
 echo "Expecting init..."
 ./eyeball "echo One\nTwo\Three" count
 echo "Expecting no diffs..."
@@ -9,7 +10,8 @@ echo "Expecting extra line..."
 echo "Expecting changed letter..."
 ./eyeball "echo One\nToo\Three" count
 echo "Running eyeball-update"
-./eyeball-update count
+./eyeball --update count
 echo "Expecting pass"
 ./eyeball "echo One\nToo\Three" count
 rm count
+unset EYEBALL_DIFF
