@@ -1,7 +1,8 @@
 # eyeball
 
-eyeball is a tiny bash script that helps you detect and understand changes in a program's output. It can be used as a cheap and 
-cheerful alternative to writing test code.
+eyeball is a tiny bash script that helps you detect and understand changes in a program's output. 
+
+It can sometimes be used as a cheap and cheerful alternative to writing test code.
 
 # Quick start
 
