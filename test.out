@@ -48,3 +48,8 @@ One\nToo\Three
 >>> eyeball: Running 'diff count count.eyeball'
 >>> eyeball: Output matches count
 >>> eyeball: PASS
+Test incomplete command lines
+Usage: eyeball <program> <outputfile>
+Usage: eyeball --update <outputfile>
+Usage: eyeball <program> <outputfile>
+Usage: eyeball <program> <outputfile>

@@ -14,4 +14,9 @@ echo "Running eyeball-update"
 echo "Expecting pass"
 ./eyeball "echo One\nToo\Three" count
 rm count
+echo "Test incomplete command lines"
+./eyeball
+./eyeball --update
+./eyeball foo
+./eyeball foo bar bee
 unset EYEBALL_DIFF
