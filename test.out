@@ -53,3 +53,5 @@ Usage: eyeball <program> <outputfile>
 Usage: eyeball --update <outputfile>
 Usage: eyeball <program> <outputfile>
 Usage: eyeball <program> <outputfile>
+Test --version
+eyeball 0.1

@@ -19,4 +19,6 @@ echo "Test incomplete command lines"
 ./eyeball --update
 ./eyeball foo
 ./eyeball foo bar bee
+echo "Test --version"
+./eyeball --version
 unset EYEBALL_DIFF

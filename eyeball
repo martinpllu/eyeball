@@ -1,6 +1,13 @@
 #!/bin/bash
 # eyeball v0.1
 
+EYEBALL_VERSION=0.1
+
+if [ "--version" == "$1" ]; then
+  echo eyeball $EYEBALL_VERSION
+  exit 0
+fi
+
 if [ "--update" == "$1" ]; then
   # Update the expected output by replacing <outputfile> with <outputfile>.eyeball
   if [ "$#" -ne 2 ]; then
