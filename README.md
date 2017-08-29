@@ -1,27 +1,29 @@
 # eyeball
 
-eyeball is a tiny bash script that helps you detect and understand changes to a program's output. It can be used as a cheap and 
+eyeball is a tiny bash script that helps you detect and understand changes in a program's output. It can be used as a cheap and 
 cheerful alternative to writing test code.
 
 # Quick start
 
 ```
-# Run a test of a command (embellish.py --frobnicate) for the first time, 
-# recording the output (stdout+stderr) in embellish.out as well as your console.
+# Run a test of your program (noodles.py --extra-soy) for the first time, 
+# recording the output (stdout+stderr) in noodles.out as well as displaying
+# it on your console.
+# 
 # Remember the double quotes around your command if it contains spaces!
 
-eyeball "python embellish.py --frobincate" embellish.out
+eyeball "python noodles.py --extra-soy" noodles.out
 
 # Run the test again (usually afer a code change is made) using the same command as above.
 # If the new output exactly matches the baseline output, eyeball reports a PASS.
 # Otherwise, eyeball reports a FAIL and displays a diff between the new and baseline output, 
-# and the new output is stored in embellish.out.eyeball.
+# and the new output is stored in noodles.out.eyeball.
 
 # If the difference in output is expected, you can update the baseline:
 
-eyeball --update embellish.out
+eyeball --update noodles.out
 
-# Otherwise, fix the bug in embellish.py and try again!
+# Otherwise, fix the bug in noodles.py and try again!
 ```
 
 # Installation
@@ -40,6 +42,8 @@ To install, simply copy the `eyeball` script somehere on your PATH, e.g. `/usr/l
 in most circumstances (seeding dates, random number generators etc). However if you need to do further processing on the output you can 
 pipe it to `sed` or `awk` for example: `eyeball "blah.sh | sed sed 's/date is .*/date is DATE/'" blah.out`
 - If your program writes output to file(s), simply output the file contents as part of the command, e.g. 
-`eyeball "gen-stuff.sh; cat stuff.json" gen-stuff.out`.
+`eyeball "gen-stuff.sh; cat stuff1.json; cat stuff2.txt" gen-stuff.out`.
 
+# Testing
 
+Run `./eyeball ./test.sh test.out`
