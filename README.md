@@ -7,24 +7,21 @@ It can sometimes be used as a cheap and cheerful alternative to writing test cod
 # Quick start
 
 ```
-# Run a test of your program (noodles.py --extra-soy) for the first time, 
-# recording the output (stdout+stderr) in noodles.out as well as displaying
-# it on your console.
-# 
-# Remember the double quotes around your command if it contains spaces!
+Run a test of your program `noodles.py --extra-soy` for the first time, recording the output (stdout+stderr) in `noodles.out` as well as displaying it on your console.
 
+Remember the double quotes around your command if it contains spaces!
+```
 eyeball "python noodles.py --extra-soy" noodles.out
+```
+Run the test again (usually afer a code change is made) using the same command as above.
+If the new output exactly matches the baseline output, eyeball reports a `PASS`
+Otherwise, eyeball reports a `FAIL` and displays a diff between the new and baseline output and the new output is stored in `noodles.out.eyeball`.
 
-# Run the test again (usually afer a code change is made) using the same command as above.
-# If the new output exactly matches the baseline output, eyeball reports a PASS.
-# Otherwise, eyeball reports a FAIL and displays a diff between the new and baseline output, 
-# and the new output is stored in noodles.out.eyeball.
-
-# If the difference in output is expected, you can update the baseline:
-
+If the difference in output is expected, you can update the baseline:
+```
 eyeball --update noodles.out
-
-# Otherwise, fix the bug in noodles.py and try again!
+```
+# Otherwise, fix the bug in `noodles.py` and try again!
 ```
 
 # Installation

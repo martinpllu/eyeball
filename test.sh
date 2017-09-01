@@ -21,4 +21,7 @@ echo "Test incomplete command lines"
 ./eyeball foo bar bee
 echo "Test --version"
 ./eyeball --version
+echo "Test output files with spaces"
+./eyeball "echo One\nTwo\Three" "count stuff"
+./eyeball "echo One\nTwo\Three" "count stuff"
 unset EYEBALL_DIFF
