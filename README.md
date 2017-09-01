@@ -20,8 +20,7 @@ If the difference in output is expected, you can update the baseline:
 ```
 eyeball --update noodles.out
 ```
-# Otherwise, fix the bug in `noodles.py` and try again!
-```
+Otherwise, fix the bug in `noodles.py` and try again!
 
 # Installation
 
