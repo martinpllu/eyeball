@@ -13,7 +13,8 @@ Remember the double quotes around your command if it contains spaces!
 eyeball "python noodles.py --extra-soy" noodles.out
 ```
 Run the test again (usually afer a code change is made) using the same command as above.
-If the new output exactly matches the baseline output, eyeball reports a `PASS`
+If the new output exactly matches the baseline output, eyeball reports a `PASS`.
+
 Otherwise, eyeball reports a `FAIL` and displays a diff between the new and baseline output and the new output is stored in `noodles.out.eyeball`.
 
 If the difference in output is expected, you can update the baseline:
