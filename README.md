@@ -6,7 +6,7 @@ It can sometimes be used as a cheap and cheerful alternative to writing test cod
 
 # Quick start
 
-Run a test of your program `noodles.py --extra-soy` for the first time, recording the output (stdout+stderr) in `noodles.out` as well as displaying it on your console.
+Run a test of your program `python noodles.py --extra-soy` for the first time, recording the output (stdout+stderr) in `noodles.out` as well as displaying it on your console.
 
 Remember the double quotes around your command if it contains spaces!
 ```
